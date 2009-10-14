@@ -5,7 +5,7 @@ The goal is to develop a framework for external developers to develop modules th
 == New model example ==
 As an example we'll consider adding a new model to BEAST. Specifically, we will demonstrate how to write a plugin that adds a new substitution model to BEAST. 
 The model we will implement is the temporal hidden Markov model introduced by
-Simon Whelan (Mol. Biol. Evol. 25(8):1683Ð1694. 2008).
+Simon Whelan (Mol. Biol. Evol. 25(8):1683-1694. 2008).
 
 
 
@@ -30,3 +30,4 @@ You should then have the file:
 	
 
 == Building the plugin ==
+	$ ant build 
