@@ -30,4 +30,17 @@ You should then have the file:
 	
 
 == Building the plugin ==
+
 	$ ant build 
+
+== Installing the plugin ==
+This target copies the jar for the plugin into $BEAST_ROOT/plugins
+
+	$ ant install 
+
+== Installing the plugin ==
+This target checks that plugin integrates with BEAST.
+
+Note: that for Beast to find the plugin when you invoke it from an external directory. This target uses a -Dbeast.plugins.dir=${beast.root}/plugins argument to java so that the plugins directory will be found
+
+	$ ant test-install 
