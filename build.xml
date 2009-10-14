@@ -1,10 +1,20 @@
-<project name="Pathogen" default="all" basedir=".">
-    <description> Plugin
-    </description>
+<project name="thmmPlugin" default="all" basedir=".">
+    <description> Example of a substitution model plugin for BEAST</description>
+    <property file="beast_sdk.properties"/>
+    
+    <fail message="The beast.root property must be set. This is usually done by copying the beast_sdk.properties.in to beast_sdk.properties and modifying it to so that beast.root refers to the appropriate path.">
+     <condition>
+       <not>
+         <isset property="beast.root"/>
+       </not>
+     </condition>
+   </fail>
+
+
     <!-- set global properties for this build -->
     <property name="src" location="src"/>
     <property name="build" location="build"/>
-    <property name="lib" location="build/dist"/>
+    <property name="lib" location="${beast.root}/build/dist"/>
     <property name="dist" location="plugins"/>
 
     <property environment="env"/>

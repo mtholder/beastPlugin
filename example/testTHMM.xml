@@ -184,7 +184,7 @@
     </strictClockBranchRates>
 
     <!-- The HKY substitution model (Hasegawa, Kishino & Yano, 1985)             -->
-    <hkyModel id="hky">
+    <thmmModel id="hky">
         <frequencies>
             <frequencyModel dataType="nucleotide">
                 <alignment idref="alignment"/>
@@ -196,7 +196,9 @@
         <kappa>
             <parameter id="hky.kappa" value="1.0" lower="0.0" upper="100.0"/>
         </kappa>
-    </hkyModel>
+    </thmmModel>
+    
+    
 
     <!-- site model                                                              -->
     <siteModel id="siteModel">

@@ -1,0 +1,32 @@
+Prototype Plugin
+
+The goal is to develop a framework for external developers to develop modules that augment the functionality of BEAST. The developer would be able to produce a small jar for users to download.  Then referencing the plugin's objects in a BEAST XML input would be sufficient to use the plugin -- BEAST itself should not need to be recompiled.
+
+== New model example ==
+As an example we'll consider adding a new model to BEAST. Specifically, we will demonstrate how to write a plugin that adds a new substitution model to BEAST. 
+The model we will implement is the temporal hidden Markov model introduced by
+Simon Whelan (Mol. Biol. Evol. 25(8):1683Ð1694. 2008).
+
+
+
+== Configuring your build env ==
+To use ant, you will need to create a beast_sdk.properties file that defines 
+the beast.root for your machine. You can copy beast_sdk.properties.in to
+beast_sdk.properties and then edit that file. The value for boost.root will
+the path on your filesystem where you checked out:
+	http://beast-mcmc.googlecode.com/svn/trunk
+
+(Shell commands in this document will use BEAST_ROOT to refer to this path, but 
+you do not need to modify your shell's environment to build a plugin  -- this is just a convention for these instructions).
+
+== Building beast.jar ==
+To build a plugin the beast.jar must be up-to-date.
+
+	$ cd ${BEAST_ROOT}
+	$ ant -f build_BEAST_MCMC.xml build_jar_all_BEAST_NoJUnitTest
+
+You should then have the file:
+	${BEAST_ROOT}/build/dist/beast.jar
+	
+
+== Building the plugin ==
