@@ -15,7 +15,7 @@ parser.add_option('-t', '--type', dest='plugin_type', default='', type='str',
                         help='The type of plugin (currently model is the specialization)')
 parser.add_option('-x', '--xmlelement', dest='xml', default='', type='str',
                         help='The name of the xml element associated with the parser')
-parser.add_option('-v', '--verbose', dest='verbose', default='False', 
+parser.add_option('-v', '--verbose', dest='verbose', default=False, 
                         action='store_true',
                         help='verbose mode')
                         
@@ -95,6 +95,7 @@ else:
     replace_dict['PLUGIN_XML_PARSER_STUB'] = ''
     replace_dict['PLUGIN_PARSER_RETURN_TYPE'] = ''
     parser_name = 'DummyModelParser'
+
 debug('\n '.join(['%s = %s' % (k, v) for k, v in replace_dict.iteritems()]))
 
 
