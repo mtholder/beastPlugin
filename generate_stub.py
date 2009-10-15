@@ -118,6 +118,11 @@ plugin_src = os.path.join(template_par, 'build.xml')
 dest_src = os.path.join(dest_dir, 'build.xml')
 copy_with_subst(plugin_src, dest_src, replace_dict)
 
+plugin_src = os.path.join(template_par, 'beast_sdk.properties.in')
+dest_src = os.path.join(dest_dir, 'beast_sdk.properties.in')
+copy_with_subst(plugin_src, dest_src, replace_dict)
+
 plugin_src = os.path.join(template_par, 'Dummy.xml')
 dest_src = os.path.join(dest_example_dir, 'test%s.xml' % options.classname)
 copy_with_subst(plugin_src, dest_src, replace_dict)
+
