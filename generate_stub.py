@@ -69,6 +69,8 @@ else:
 
 replace_dict['PLUGIN_XML_ELEMENT'] = xml_el
 
+parser_name = 'DummyParser'
+
 if implModel:
     replace_dict['PLUGIN_IMPORTS'] = '''import dr.evomodel.substmodel.NucModelType;
 import dr.evomodel.substmodel.FrequencyModel;
@@ -92,7 +94,7 @@ else:
     replace_dict['PLUGIN_XML_SYNTAX_RULES'] = ''
     replace_dict['PLUGIN_XML_PARSER_STUB'] = ''
     replace_dict['PLUGIN_PARSER_RETURN_TYPE'] = ''
-    
+    parser_name = 'DummyModelParser'
 debug('\n '.join(['%s = %s' % (k, v) for k, v in replace_dict.iteritems()]))
 
 
@@ -116,7 +118,7 @@ plugin_src = os.path.join(template_par, 'DummyPlugin.java')
 dest_src = os.path.join(dest_src_dir, '%s.java' % options.classname)
 copy_with_subst(plugin_src, dest_src, replace_dict)
 
-plugin_src = os.path.join(template_par, 'DummyParser.java')
+plugin_src = os.path.join(template_par, '%s.java' % parser_name)
 dest_src = os.path.join(dest_src_dir, '%sParser.java' % options.classname)
 copy_with_subst(plugin_src, dest_src, replace_dict)
 

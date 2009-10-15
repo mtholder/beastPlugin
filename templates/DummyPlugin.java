@@ -8,8 +8,8 @@ public class @PLUGIN_CLASS@ implements Plugin {
 
 	public Set<XMLObjectParser> getParsers() {
 		Set<XMLObjectParser> parsers = new HashSet<XMLObjectParser>();
-		@PLUGIN_CLASS@Parser thmmParser = new @PLUGIN_CLASS@Parser();
-		parsers.add(thmmParser);
+		@PLUGIN_CLASS@Parser pluginParser = new @PLUGIN_CLASS@Parser();
+		parsers.add(pluginParser);
 		return parsers;
 	}
 	
