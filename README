@@ -2,11 +2,13 @@ Prototype Plugin
 
 The goal is to develop a framework for external developers to develop modules that augment the functionality of BEAST. The developer would be able to produce a small jar for users to download.  Then referencing the plugin's objects in a BEAST XML input would be sufficient to use the plugin -- BEAST itself should not need to be recompiled.
 
-== New model example ==
-As an example we'll consider adding a new model to BEAST. Specifically, we will demonstrate how to write a plugin that adds a new substitution model to BEAST. 
-The model we will implement is the temporal hidden Markov model introduced by
-Simon Whelan (Mol. Biol. Evol. 25(8):1683-1694. 2008).
+== Creating a stub ==
+If you have python installed, then you can run generate_stub.py for example:
 
+	$ python generate_stub.py  -x elname -p beastplugin.test  -c testPlugin
+
+To generate the stub for beastplugin.test.testPlugin that provides a parser for
+the <elname /> xml elements in BEAST's input.
 
 
 == Configuring your build env ==

@@ -66,8 +66,6 @@ else:
 
 replace_dict['PLUGIN_XML_ELEMENT'] = xml_el
 
-parser_name = 'DummyParser'
-
 replace_dict['PLUGIN_IMPORTS'] = '''import dr.evomodel.substmodel.NucModelType;
 import dr.evomodel.substmodel.FrequencyModel;
 import dr.evomodel.substmodel.HKY;
