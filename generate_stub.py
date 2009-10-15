@@ -19,6 +19,7 @@ parser.add_option('-v', '--verbose', dest='verbose', default=False,
                         action='store_true',
                         help='verbose mode')
                         
+
 (options, args) = parser.parse_args()
 if options.verbose:
     VERBOSE = True
