@@ -19,11 +19,11 @@
     
     <!-- the following 2 properties will be changed for every plugin that you write -->
       <!-- the plugin-class is the class that implements dr.app.plugin.Plugin -->
-    <property name="plugin-class" value="THMMPlugin"/>
+    <property name="plugin-class" value="MarkovModulatedModelPlugin"/>
       <!-- the plugin-package is the package that contains your plugin-class -->
     <property name="plugin-package" value="beastplugin"/>
       <!-- plugin-jar name should list the fully qualified name to your plugin class -->
-    <property name="plugin-jar" value="${plugin-package}.thmm.${plugin-class}.jar"/>
+    <property name="plugin-jar" value="${plugin-package}.markovmodulated.${plugin-class}.jar"/>
 
     <property environment="env"/>
 
@@ -103,12 +103,12 @@
            dir="scratch"
            >
          <sysproperty key="beast.plugins.dir" value="${beast.root}/plugins" />
-         <arg value="${basedir}/example/testTHMM.xml"/>
+         <arg value="${basedir}/example/testMarkovModulated.xml"/>
          <classpath>
            <pathelement location="${lib}/beast.jar"/>
          </classpath>
        </java>
-    <fail message="The example example/testTHMM.xml failed">
+    <fail message="The example example/testMarkovModulated.xml failed">
      <condition>
          <not> <equals arg1="${example.exitcode}" arg2="0"/></not>
      </condition>
