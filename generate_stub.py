@@ -27,8 +27,6 @@ if not options.package:
 if not options.classname:
     sys.exit('The class options must be specified')
 
-implModel = options.plugin_type.lower() == 'model'
-
 dir = os.path.dirname(os.path.abspath(sys.argv[0]))
 template_par = os.path.join(dir, 'templates')
 if not os.path.exists(template_par):
@@ -71,7 +69,7 @@ replace_dict['PLUGIN_XML_ELEMENT'] = xml_el
 
 parser_name = 'DummyParser'
 
-if implModel:
+if options.plugin_type.lower() == 'model':
     replace_dict['PLUGIN_IMPORTS'] = '''import dr.evomodel.substmodel.NucModelType;
 import dr.evomodel.substmodel.FrequencyModel;
 import dr.evomodel.substmodel.HKY;
@@ -89,12 +87,17 @@ import dr.inference.model.Variable;'''
 
         return new HKY(kappaParam, freqModel);'''
     replace_dict['PLUGIN_PARSER_RETURN_TYPE'] = 'HKY.class'
+    parser_name = 'DummyModelParser'
+elif options.plugin_type.lower() == 'operator':
+    replace_dict['PLUGIN_IMPORTS'] = '''import dr.inference.operators.*;'''
+    replace_dict['PLUGIN_XML_SYNTAX_RULES'] = ''
+    replace_dict['PLUGIN_XML_PARSER_STUB'] = ''
+    replace_dict['PLUGIN_PARSER_RETURN_TYPE'] = ''
 else:
     replace_dict['PLUGIN_IMPORTS'] = ''
     replace_dict['PLUGIN_XML_SYNTAX_RULES'] = ''
     replace_dict['PLUGIN_XML_PARSER_STUB'] = ''
     replace_dict['PLUGIN_PARSER_RETURN_TYPE'] = ''
-    parser_name = 'DummyModelParser'
 
 debug('\n '.join(['%s = %s' % (k, v) for k, v in replace_dict.iteritems()]))
 
