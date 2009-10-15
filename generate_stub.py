@@ -11,8 +11,6 @@ parser.add_option('-p', '--package', dest='package',
                         help='The package that contains the Plugin impl')
 parser.add_option('-c', '--class', dest='classname', 
                         help='The name of the of class that implements Plugin')
-parser.add_option('-t', '--type', dest='plugin_type', default='', type='str',
-                        help='The type of plugin (currently model is the specialization)')
 parser.add_option('-x', '--xmlelement', dest='xml', default='', type='str',
                         help='The name of the xml element associated with the parser')
 parser.add_option('-v', '--verbose', dest='verbose', default=False, 
@@ -70,35 +68,24 @@ replace_dict['PLUGIN_XML_ELEMENT'] = xml_el
 
 parser_name = 'DummyParser'
 
-if options.plugin_type.lower() == 'model':
-    replace_dict['PLUGIN_IMPORTS'] = '''import dr.evomodel.substmodel.NucModelType;
+replace_dict['PLUGIN_IMPORTS'] = '''import dr.evomodel.substmodel.NucModelType;
 import dr.evomodel.substmodel.FrequencyModel;
 import dr.evomodel.substmodel.HKY;
 import dr.inference.model.Parameter;
 import dr.inference.model.Variable;'''
-    replace_dict['PLUGIN_XML_SYNTAX_RULES'] = '''new ElementRule(FrequencyModel.FREQUENCIES,
-                    new XMLSyntaxRule[]{new ElementRule(FrequencyModel.class)}),
-            new ElementRule("kappa",
-                    new XMLSyntaxRule[]{new ElementRule(Variable.class)})'''
-    replace_dict['PLUGIN_XML_PARSER_STUB'] = '''Variable kappaParam = (Variable) xo.getElementFirstChild("kappa");
-        FrequencyModel freqModel = (FrequencyModel) xo.getElementFirstChild(FrequencyModel.FREQUENCIES);
+replace_dict['PLUGIN_XML_SYNTAX_RULES'] = '''new ElementRule(FrequencyModel.FREQUENCIES,
+                new XMLSyntaxRule[]{new ElementRule(FrequencyModel.class)}),
+        new ElementRule("kappa",
+                new XMLSyntaxRule[]{new ElementRule(Variable.class)})'''
+replace_dict['PLUGIN_XML_PARSER_STUB'] = '''Variable kappaParam = (Variable) xo.getElementFirstChild("kappa");
+    FrequencyModel freqModel = (FrequencyModel) xo.getElementFirstChild(FrequencyModel.FREQUENCIES);
 
-        Logger.getLogger("dr.evomodel").info("Creating THMM substitution model. Initial kappa = " +
-                kappaParam.getValue(0));
+    Logger.getLogger("dr.evomodel").info("Creating THMM substitution model. Initial kappa = " +
+            kappaParam.getValue(0));
 
-        return new HKY(kappaParam, freqModel);'''
-    replace_dict['PLUGIN_PARSER_RETURN_TYPE'] = 'HKY.class'
-    parser_name = 'DummyModelParser'
-elif options.plugin_type.lower() == 'operator':
-    replace_dict['PLUGIN_IMPORTS'] = '''import dr.inference.operators.*;'''
-    replace_dict['PLUGIN_XML_SYNTAX_RULES'] = ''
-    replace_dict['PLUGIN_XML_PARSER_STUB'] = ''
-    replace_dict['PLUGIN_PARSER_RETURN_TYPE'] = ''
-else:
-    replace_dict['PLUGIN_IMPORTS'] = ''
-    replace_dict['PLUGIN_XML_SYNTAX_RULES'] = ''
-    replace_dict['PLUGIN_XML_PARSER_STUB'] = ''
-    replace_dict['PLUGIN_PARSER_RETURN_TYPE'] = ''
+    return new HKY(kappaParam, freqModel);'''
+replace_dict['PLUGIN_PARSER_RETURN_TYPE'] = 'HKY.class'
+parser_name = 'DummyModelParser'
 
 debug('\n '.join(['%s = %s' % (k, v) for k, v in replace_dict.iteritems()]))
 
