@@ -183,7 +183,12 @@
         </rate>
     </strictClockBranchRates>
 
-    <!-- The HKY substitution model (Hasegawa, Kishino & Yano, 1985)             -->
+    <!-- The example plugin creates an element that returns a simple instance
+    	of an HKY DNA substitution model in its parser.
+    		HKY substitution model (Hasegawa, Kishino & Yano, 1985)
+    		
+    	You'll need to modify this element in your example as you test your plugin.
+    	-->
     <@PLUGIN_XML_ELEMENT@ id="hky">
         <frequencies>
             <frequencyModel dataType="nucleotide">
@@ -197,6 +202,7 @@
             <parameter id="hky.kappa" value="1.0" lower="0.0" upper="100.0"/>
         </kappa>
     </@PLUGIN_XML_ELEMENT@>
+
     
     
 
@@ -252,7 +258,7 @@
         </wilsonBalding>
     </operators>
 
-    <mcmc id="mcmc" chainLength="10" autoOptimize="true">
+    <mcmc id="mcmc" chainLength="1000" autoOptimize="true">
         <posterior id="posterior">
             <prior id="prior">
                 <coalescentLikelihood idref="coalescent"/>

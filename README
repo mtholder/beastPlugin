@@ -1,6 +1,10 @@
 Prototype Plugin
 
-The goal is to develop a framework for external developers to develop modules that augment the functionality of BEAST. The developer would be able to produce a small jar for users to download.  Then referencing the plugin's objects in a BEAST XML input would be sufficient to use the plugin -- BEAST itself should not need to be recompiled.
+The goal is to develop a framework for external developers to develop modules
+that augment the functionality of BEAST. The developer would be able to produce
+a small jar for users to download.  Then referencing the plugin's objects in a
+BEAST XML input would be sufficient to use the plugin -- BEAST itself should not
+need to be recompiled.
 
 == Creating a stub ==
 If you have python installed, then you can run generate_stub.py for example:
@@ -19,7 +23,8 @@ the path on your filesystem where you checked out:
 	http://beast-mcmc.googlecode.com/svn/trunk
 
 (Shell commands in this document will use BEAST_ROOT to refer to this path, but 
-you do not need to modify your shell's environment to build a plugin  -- this is just a convention for these instructions).
+you do not need to modify your shell's environment to build a plugin  -- this is
+just a convention for these instructions).
 
 == Building beast.jar ==
 To build a plugin the beast.jar must be up-to-date.
@@ -40,9 +45,18 @@ This target copies the jar for the plugin into $BEAST_ROOT/plugins
 
 	$ ant install 
 
-== Installing the plugin ==
+== Testing the  installed plugin ==
 This target checks that plugin integrates with BEAST.
 
-Note: that for Beast to find the plugin when you invoke it from an external directory. This target uses a -Dbeast.plugins.dir=${beast.root}/plugins argument to java so that the plugins directory will be found
+Note: that for Beast to find the plugin when you invoke it from an external
+directory. This target uses a -Dbeast.plugins.dir=${beast.root}/plugins argument
+to java so that the plugins directory will be found
 
 	$ ant test-install 
+
+This will create a use the XML instance document in your plugin's example
+directory to test that the plug in is being used.  Note that the simple Plugin
+Template used to generate your stub has a parser that creates an HKY model as
+your plugin's object.  As you write your Plugin, you'll modify the code
+(obviously), but you will also need to update the example xml document if you
+want the test-install target to work.
